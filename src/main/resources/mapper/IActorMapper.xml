@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.column.dao.IActorMapper">
+	<resultMap id="BaseResultMapFilm" type="com.my.column.entity.Film">
+		<id column="film_id" jdbcType="VARCHAR" property="film_id" />
+	</resultMap>
+	<resultMap id="BaseResultMapActor" type="com.my.column.entity.Actor">
+		<id column="actor_id" jdbcType="VARCHAR" property="actor_id" />
+	</resultMap>
+	<select id="getActorById" parameterType="string" resultMap="BaseResultMapFilm">
+		select * from actor where actor_id=#{_parameter}
+	</select>
+	
+	<select id="getActorUnLucene" resultMap="BaseResultMapActor">
+		select * from actor where islucene=1 and actor_name!=''
+	</select>
+	
+	<update id="updateActorLucene" parameterType="string">
+		update actor set islucene=1 where actor_id=#{_parameter}
+	</update>
+</mapper>

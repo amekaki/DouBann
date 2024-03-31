@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.column.dao.CommentMapper">
+
+    <select id="getAllComment" resultType="com.my.column.entity.Comment">
+        SELECT comment_id,film_id,user_id,star
+        FROM comment LIMIT 10000;
+    </select>
+
+</mapper>

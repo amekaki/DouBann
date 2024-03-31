@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.column.dao.FilmAccessRecordMapper">
+    <insert id="insertFilmAccessRecord" parameterType="com.my.column.entity.FilmAccessRecord">
+        INSERT INTO film_access_record
+            (film_id, user_id,access_time)
+        VALUES
+            (#{film_id},#{user_id}, #{access_time})
+    </insert>
+
+    <select id="getFilmFrequencyInLast20Hours" resultType="map">
+        SELECT film_id, COUNT(*) AS frequency
+        FROM film_access_record
+        WHERE access_time >= NOW() - INTERVAL 24 HOUR
+        GROUP BY film_id
+    </select>
+
+</mapper>
